@@ -13,7 +13,7 @@ Crear Evento - Proyectando Cursos
             <h2> Crear un nuevo evento</h2>
             {% csrf_token %}
 
-            {{ comentario | crispy }}
+            {{ form | crispy }}
 
             <button class="btn btn-outline-success my-3 d-grid gap-2 col-4" type="submit">Crear evento</button>
 
