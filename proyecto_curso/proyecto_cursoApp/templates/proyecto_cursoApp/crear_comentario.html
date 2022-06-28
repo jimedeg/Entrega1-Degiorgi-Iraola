@@ -3,20 +3,19 @@
 {% load crispy_forms_tags %}
 
 {% block tituloPagina %}
-Crear Evento - Proyectando Cursos
+Crear Comentario - Proyectando Cursos
 {% endblock %}
 
 {% block contenidoPagina %}
 <div class="row gx-5 justify-content-center">
     <div class="col-lg-5">
-        <form action="" method="post">
-            <h2> Crear un nuevo evento</h2>
+        <form action="" class="" method="post">
+            <h2> Crear un nuevo comentario</h2>
             {% csrf_token %}
 
-            {{ comentario | crispy }}
+            {{ formulario | crispy }}
 
-            <button class="btn btn-outline-success my-3 d-grid gap-2 col-4" type="submit">Crear evento</button>
-
+            <button class="btn btn-outline-success my-3 d-grid gap-2 col-4" type="submit">Enviar comentario</button>
         </form>
     </div>
 </div>

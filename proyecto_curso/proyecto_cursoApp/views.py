@@ -1,8 +1,8 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 
-from proyecto_cursoApp.models import Curso, Evento
-from .forms import nuevo_curso, nuevo_evento
+from proyecto_cursoApp.models import *
+from .forms import * 
 from django.db.models import Q
 
 # Create your views here.
@@ -12,7 +12,6 @@ def inicio (request):
     evento = Evento.objects.all()[:3]
     
     return render(request,"proyecto_cursoApp/index.html",{'curso': curso , 'evento': evento})
-
 
 def curso (request):
     
@@ -28,8 +27,6 @@ def curso (request):
     curso = Curso.objects.all()
 
     return render(request,"proyecto_cursoApp/curso.html",{"curso":curso, "buscar":False})
-  
-   
 
 def evento (request):
     if request.method == "POST":
@@ -44,6 +41,21 @@ def evento (request):
     evento = Evento.objects.all()
 
     return render(request,"proyecto_cursoApp/evento.html",{"evento":evento, "buscar":False})
+
+def comentario (request):
+    
+    # if request.method == "POST":
+
+    #     buscar = request.POST["buscar"]
+
+    #     if buscar != "":
+    #         curso = Curso.objects.filter( Q(nombre__icontains=buscar)).values()
+
+    #         return render(request,"proyecto_cursoApp/curso.html",{"curso":curso, "buscar":True, "busqueda":buscar})
+
+    comentario = Comentrio.objects.all()
+
+    return render(request,"proyecto_cursoApp/comentario.html",{"comentario":comentario }) #"buscar":False
 
 def contacto (request):
     
@@ -92,7 +104,29 @@ def crear_evento (request):
         form_vacio= nuevo_evento()
          
         return render(request,"proyecto_cursoApp/crear_evento.html",{"form":form_vacio})
-               
+
+def crear_comentario (request):
+    #post
+    if request.method == "POST":
+        
+        formulario = nuevo_comentario(request.POST)
+        
+        if formulario.is_valid():
+            
+            info_formulario = formulario.cleaned_data
+            
+            comentario = Comentrio(nombre = info_formulario ["nombre"], email = info_formulario ["email"], mensaje = info_formulario ["mensaje"] )
+            comentario.save() #Guardar en la db
+            
+            return redirect("comentario")
+        else:
+            return render(request,"proyecto_cursoApp/crear_comentario.html",{"formulario":formulario})
+    else:
+        
+        form_vacio= nuevo_comentario()
+         
+        return render(request,"proyecto_cursoApp/crear_comentario.html",{"formulario":form_vacio})
+                 
 def busqueda (request):
          
     if request.method == "POST":
