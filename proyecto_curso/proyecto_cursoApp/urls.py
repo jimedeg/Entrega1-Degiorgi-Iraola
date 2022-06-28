@@ -24,5 +24,7 @@ urlpatterns = [
     path ('contacto', contacto, name= "contacto"),
     path ('crear_curso', crear_curso, name= "crear_curso"),
     path ('crear_evento', crear_evento, name= "crear_evento"),
+    path ('crear_comentario', crear_comentario, name= "crear_comentario"),
     path ('busqueda', busqueda, name= "busqueda"),
+    path ('comentario', comentario, name= "comentario"),
     ]
