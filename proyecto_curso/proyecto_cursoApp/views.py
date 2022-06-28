@@ -18,16 +18,16 @@ def curso (request):
     
     if request.method == "POST":
 
-        search = request.POST["search"]
+        buscar = request.POST["buscar"]
 
-        if search != "":
-            curso = Curso.objects.filter( Q(nombre__icontains=search)).values()
+        if buscar != "":
+            curso = Curso.objects.filter( Q(nombre__icontains=buscar)).values()
 
-            return render(request,"proyecto_cursoApp/curso.html",{"curso":curso, "search":True, "busqueda":search})
+            return render(request,"proyecto_cursoApp/curso.html",{"curso":curso, "buscar":True, "busqueda":buscar})
 
     curso = Curso.objects.all()
 
-    return render(request,"proyecto_cursoApp/curso.html",{"curso":curso, "search":False})
+    return render(request,"proyecto_cursoApp/curso.html",{"curso":curso, "buscar":False})
   
    
 
