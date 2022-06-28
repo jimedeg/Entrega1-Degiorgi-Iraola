@@ -32,10 +32,18 @@ def curso (request):
    
 
 def evento (request):
-    
+    if request.method == "POST":
+
+        buscar = request.POST["buscar"]
+
+        if buscar != "":
+            evento = Evento.objects.filter( Q(nombre__icontains=buscar)).values()
+
+            return render(request,"proyecto_cursoApp/evento.html",{"evento":evento, "buscar":True, "busqueda":buscar})
+
     evento = Evento.objects.all()
-    
-    return render(request,"proyecto_cursoApp/evento.html",{'evento': evento})
+
+    return render(request,"proyecto_cursoApp/evento.html",{"evento":evento, "buscar":False})
 
 def contacto (request):
     
