@@ -12,10 +12,23 @@ los cursos destacados, los últimos eventos y una sección de contacto.
 3-Con github desktop:  
 ![instalacion 2](https://user-images.githubusercontent.com/105326853/174861811-9bfeb813-e092-4c25-a822-dfa77ccb56b2.jpg)  
 4- Elegimos donde clonar la carpeta.  
-5- Lanzamos el servidor con:  
+5- En la carpeta abrimos la consola:  
+![abrir consola](https://user-images.githubusercontent.com/105326853/176316821-ea10fbc6-5e9d-4c3e-a470-2a3bdc75c7b4.jpg)
+
+6- Lanzamos el servidor con:  
 `python manage.py runserver`
  
 
 ## Panel de administrador
+
+1- Crear usuario administrador 
+
+`python manage.py createsuperuser`
+
 -usuario : admin  
 -contraseña : 1234
+
+## Creadores
+
+-Ignacio Iraola  
+-Jimena Degiorgi
