@@ -4,4 +4,11 @@ class nuevo_curso(forms.Form):
     
     nombre = forms.CharField(max_length= 30)
     informacion = forms.CharField(max_length=100)
-    fecha = forms.DateField()
+    fecha = forms.DateTimeField()
+    
+class nuevo_evento(forms.Form):
+    
+    nombre = forms.CharField(max_length=50)
+    info = forms.CharField(max_length=100)
+    fecha = forms.DateTimeField()
+    

@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 
 from proyecto_cursoApp.models import Curso, Evento
-from .forms import nuevo_curso
+from .forms import nuevo_curso, nuevo_evento
 from django.db.models import Q
 
 # Create your views here.
@@ -16,9 +16,20 @@ def inicio (request):
 
 def curso (request):
     
+    if request.method == "POST":
+
+        search = request.POST["search"]
+
+        if search != "":
+            curso = Curso.objects.filter( Q(nombre__icontains=search)).values()
+
+            return render(request,"proyecto_cursoApp/curso.html",{"curso":curso, "search":True, "busqueda":search})
+
     curso = Curso.objects.all()
-            
-    return render(request,"proyecto_cursoApp/curso.html",{'curso': curso})
+
+    return render(request,"proyecto_cursoApp/curso.html",{"curso":curso, "search":False})
+  
+   
 
 def evento (request):
     
@@ -62,7 +73,7 @@ def crear_evento (request):
             
             info_evento = form.cleaned_data
             
-            evento = Evento(nombre = info_evento ["nombre"], info = info_evento ["informacion"], fecha = info_evento ["fecha"] )
+            evento = Evento(nombre = info_evento ["nombre"], info = info_evento ["info"], fecha = info_evento ["fecha"] )
             evento.save() #Guardar en la db
             
             return redirect("evento")
