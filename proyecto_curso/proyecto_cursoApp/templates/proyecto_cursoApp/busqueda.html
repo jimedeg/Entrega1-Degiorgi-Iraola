@@ -1,0 +1,50 @@
+{% extends 'proyecto_cursoApp/base.html' %}
+{% load static %}
+
+{% block tituloPagina %}
+Buscar Curso - Proyectando Cursos
+{% endblock %}
+
+{% block contenidoPagina %}
+<div class="row gx-5 justify-content-center">
+    <div class="col-lg-10">
+        <form class="d-flex p-4 my-2 my-lg-0" action="" method="post">
+            {% csrf_token %}
+            <input class="flex-grow-0 form-control me-2 border border-success " type="search" placeholder="Busqueda" name="nombre" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Buscar</button>
+        </form>
+    </div>
+</div>
+
+
+
+<div class="row gx-5 justify-content-center">
+    <div class="col-lg-10 table-responsive">
+        <h5>Resultados:</h5>
+        <table class="table table-theme table-success table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Curso</th>
+                    <th scope="col">Información</th>
+                    <th scope="col">Fecha de  inicio</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for resultado in busquedas %}
+
+                    <tr>
+                        
+                        <td>{{resultado.nombre}}</td>
+                        <td>{{resultado.info}}</td>
+                        <td>{{resultado.fecha}}</td>
+                    </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+{% endblock %}
